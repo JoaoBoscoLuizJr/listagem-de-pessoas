@@ -1,8 +1,7 @@
 import React from "react";
-
+import { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
-
 import "./form-pessoa.style.css";
 
 const FormPessoa = (method) => {
@@ -22,7 +21,7 @@ const FormPessoa = (method) => {
       <TextField id="inSobrenome" label="Sobrenome" variant="outlined" onChange={(e)=>setSobrenome(e.target.value)} />
       <TextField id="inIdade" label="Idade" variant="outlined" onChange={(e)=>setIdade(e.target.value)} />
 
-      <Button type="submit" variant="outlined" onClick={method}>Botão</Button>
+      <Button variant="outlined" onClick={method}>Botão</Button>
     </div>
   );
 };
