@@ -2,7 +2,7 @@ const URL_API = "http://localhost5500/api";
 
 const apiGetPessoas = async () => {
   try {
-    const resposta = await fetch(`${URL_API}/pessoa`);
+    const resposta = await fetch(`${URL_API}/pessoa/add`);
 
     if (!resposta.ok) {
       throw new Error("Falha na requisição");

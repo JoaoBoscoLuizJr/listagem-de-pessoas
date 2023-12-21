@@ -1,18 +1,18 @@
-const pessoaService = require("../services/pessoa.services");
+const pessoaService = require('../../services/pessoa.services')
 
 const controllerPessoa = {
   listarPessoas: async (req, res) => {
     try {
-      const pessoas = await pessoaService.getPessoas;
+      const pessoas = await pessoaService.getPessoas();
       res.json(pessoas);
     } catch (error) {
       console.log(error);
-      res.status(500).json({ statusCode: 500, error: "Error na tentativa de listar todos os registros no banco" });
+      res.status(500).json({ statusCode: 500, error: error.message });
     }
   },
   buscarPessoaById: async (req, res) => {
     try {
-      const pessoa = await pessoaService.findById(req.params.id);
+      const pessoa = await pessoaService.getById(req.params.id);
       if (!pessoa) {
         return res
           .status(404)
@@ -28,15 +28,15 @@ const controllerPessoa = {
   createPessoa: async (req, res) => {
     try {
       const novaPessoa = await pessoaService.createPessoa(req.body);
-      res.status(201).json(novaPessoa);
+      return res.status(201).json(novaPessoa);
     } catch (error) {
       console.log(error);
-      res.status(500).json({ statusCode: 500, error: "Erro na tentativa de inserir no registro no banco" });
+      return res.status(500).json({ statusCode: 500, error: "Erro na tentativa de inserir no registro no banco" });
     }
   },
   atualizarPessoa:async (req, res) => {
     try {
-      const pessoaExistente = await pessoaService.findById(req.params.id);
+      const pessoaExistente = await pessoaService.getById(req.params.id);
       console.log(pessoaExistente);
       if (!pessoaExistente) {
         return res
@@ -53,7 +53,7 @@ const controllerPessoa = {
   },
   deletarPessoa: async (req, res) => {
     try {
-      const pessoaExistente = await pessoaService.findById(req.params.id);
+      const pessoaExistente = await pessoaService.getById(req.params.id);
       if (!pessoaExistente) {
         return res
           .status(404)

@@ -26,7 +26,7 @@ function App() {
   }, [onAction]);
 
   const fetchPessoas = async () => {
-    const resultado = await apiGetPessoas();
+    const resultado = await apiGetPessoaById();
     setDados(resultado);
     setAction(false)
     setSelected(NULLPESSOA)
